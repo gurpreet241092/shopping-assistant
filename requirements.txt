@@ -1,0 +1,17 @@
+# sqlalchemy
+# python-jose
+# protobuf
+# requests
+Flask==2.1.2
+# oauthlib
+Flask-Login==0.6.0
+flask_restful
+flask-cors
+cacheout
+# flask_sqlalchemy
+# psycopg2-binary
+openai
+urllib3==1.26.6
+typesense
+ShopifyAPI
+python-dotenv

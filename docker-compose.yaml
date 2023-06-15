@@ -1,0 +1,11 @@
+#  command: docker compose -f docker-compose.yaml up
+version: '3.4'
+services:
+  typesense:
+    image: typesense/typesense:0.24.0
+    restart: on-failure
+    ports:
+      - "8108:8108"
+    volumes:
+      - $HOME/typesense-data:/data
+    command: '--data-dir /data --api-key=xyz --enable-cors'
