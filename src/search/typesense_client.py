@@ -4,6 +4,7 @@ from flask_app import app
 
 host = app.config["TYPESENSE_HOST"]
 port = app.config["TYPESENSE_PORT"]
+api_key = app.config["TYPESENSE_API_KEY"]
 
 search_client = typesense.Client({
     'nodes': [{
@@ -11,7 +12,7 @@ search_client = typesense.Client({
         'port': port,       # For Typesense Cloud use 443
         'protocol': 'http'    # For Typesense Cloud use https
     }],
-    'api_key': 'xyz',
+    'api_key': api_key,
     'connection_timeout_seconds': 2
 })
 

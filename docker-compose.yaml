@@ -1,4 +1,5 @@
 #  command: docker compose -f docker-compose.yaml up
+#  sudo systemctl status typesense-server.service
 version: '3.4'
 services:
   typesense:

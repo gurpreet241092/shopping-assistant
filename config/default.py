@@ -9,6 +9,7 @@ class Config:
     PROFILE = "dev"
     TYPESENSE_HOST = "localhost"
     TYPESENSE_PORT = "8108"
+    TYPESENSE_API_KEY = os.getenv("TYPESENSE_API_KEY")
     SHOPIFY_TOKEN = os.getenv('SHOPIFY_TOKEN')
     SHOPIFY_MERCHANT = os.getenv('SHOPIFY_MERCHANT')
 
