@@ -14,3 +14,13 @@ search_client = typesense.Client({
     'api_key': 'xyz',
     'connection_timeout_seconds': 2
 })
+
+# Extract product name from TypeSense Response
+def extract_product_from_documents(data):
+    doc = data["document"]
+    return {
+        "title": doc["title"],
+        "tags": doc["tags"],
+        "body_html": doc["body_html"],
+        "highlight": data["highlight"]
+    }

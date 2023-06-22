@@ -88,9 +88,10 @@ if __name__ == '__main__':
     print("\n\n")
 
     print(search_client.collections['product'].documents.search({
-        'q': '*',
-        'query_by': 'title, tags, body_html',
-        'filter_by': 'variants.color:[gainsboro]'
+        "filter_by": "variants.color:[black,pink]",
+        "q": "dresses girls",
+        "query_by": "title, tags, body_html",
+        "per_page": 10
     }))
 
     # export_output = search_client.collections['product'].documents.export()

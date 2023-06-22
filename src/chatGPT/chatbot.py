@@ -121,34 +121,69 @@ AND
 Only output the python object, with nothing else.
 """}]
 
-
-base_context = [{'role': 'system', 'content': f"""
+category = "cloths and apparels for children"
+base_context7 = [{'role': 'system', 'content': f"""
 Follow these steps to answer the customer queries in form of python object who details are given below.
 The customer service query will be delimited with {delimiter} characters.
 
-Step 1:{delimiter} First decide if user is querying about a products from category "baby products".
+Step 1:{delimiter} First decide if user is querying about a products from category "{category}". Convert the customer query into short query related to a product for search engine.
 
-Step 2:{delimiter} If user is querying about products from category "baby products", \
+Step 2:{delimiter} If user is querying about products from category "{category}", \
 extract the various filter types from customer query. e.g. "size", "color", "price" and "discount" \
 Allowed filters types are size, color, price and discount. \
-Otherwise, your response to customer query would be asking them to query products related to baby products only in friendly tone.
+Otherwise, your response to customer query would be asking them to query products related to {category} only in friendly tone.
 
 Step3:{delimiter} If the extracted filter types does not cover all allowed filter type list given above, \
 your response to customer query would be asking them if they want to apply other remaining filter types as well in friendly tone. \
 Otherwise your response to customer query would be asking them to wait while the system fetch the \
 desired products according to the filters provided by them.
 
-Step 4:{delimiter} If user is querying about products from category cloths or apparels, \
+Step 4:{delimiter} If user is querying about products from category "{category}", \
 extract the list of tags from the customer query. Otherwise give the empty list.
 
 Output a python object which has three fields in following format: 
-    'tags': <a list of tags associated with apparels and clothing extracted from customer service query in Step 4> 
+    "query": <Short search query related to product extracted in Step 1. Exclude the filter related details extracted in Step 2. Leave it empty if it is not related to {category}>
+AND
+    "tags": <a list of tags associated with {category} extracted from customer service query in Step 4> 
 AND 
-    'filters': <a list of filter object just associated with apparels and clothing extracted from customer service query in Step 2. \
+    "filters": <a list of filter object just associated with {category} extracted from customer service query in Step 2. \
     the filter object has filter type as key and the filter values will be a list. \
-    e.g. "filters"=[{{"size":["XL","L"]}}, {{"color":["blue","green"]}}, {{"brand": ["Nike"]}}, {{"price":"1000-5000"}}]> \
+    e.g. "filters"=[{{"size":["XL","L"]}}, {{"color":["blue","green"]}}, {{"price":"1000-5000"}}]> \
 AND 
-    'responseForUser': <your response to the customer query based on steps above> 
+    "responseForUser": <your response to the customer query based on steps above> 
+.
+Only output the python object, with nothing else.
+"""}]
+
+base_context = [{'role': 'system', 'content': f"""
+Follow these steps to answer the customer queries in form of python object who details are given below.
+The customer service query will be delimited with {delimiter} characters.
+
+Step 1:{delimiter} First decide if user is querying about a products from category "{category}". Convert the customer query into keywords string for searching.
+
+Step 2:{delimiter} If user is querying about products from category "{category}", \
+extract the various filter types from customer query. e.g. "size", "color", "price" and "discount" \
+Allowed filters types are size, color, price and discount. \
+Otherwise, your response to customer query would be asking them to query products related to {category} only in friendly tone.
+
+Step3:{delimiter} If the extracted filter types does not cover all allowed filter type list given above, \
+your response to customer query would be asking them if they want to apply other remaining filter types as well in friendly tone. \
+Otherwise your response to customer query would be asking them to wait while the system fetch the \
+desired products according to the filters provided by them.
+
+Step 4:{delimiter} If user is querying about products from category "{category}", \
+extract the list of tags from the customer query. Otherwise give the empty list.
+
+Output a python object which has three fields in following format: 
+    "keywords": <keywords string extracted in Step 1 for searching. Return empty string if it is not related to {category}>
+AND
+    "tags": <a list of tags associated with {category} extracted from customer service query in Step 4> 
+AND 
+    "filters": <a list of filter object just associated with {category} extracted from customer service query in Step 2. \
+    the filter object has filter type as key and the filter values will be a list. \
+    e.g. "filters"=[{{"size":["XL","L"]}}, {{"color":["blue","green"]}}, {{"price":"1000-5000"}}]> \
+AND 
+    "responseForUser": <your response to the customer query based on steps above> 
 .
 Only output the python object, with nothing else.
 """}]

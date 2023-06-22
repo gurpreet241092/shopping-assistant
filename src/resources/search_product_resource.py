@@ -14,11 +14,11 @@ class SearchProductResource(Resource):
     def post(self):
         app.logger.info("Processing request:" + str(request.data))
         request_json = json.loads(request.data)
-        request_json = {
-            'q': 'hunger',
-            'query_by': 'title',
-            'sort_by': 'ratings_count:desc'
-        }
+        # request_json = {
+        #     'q': 'hunger',
+        #     'query_by': 'title',
+        #     'sort_by': 'ratings_count:desc'
+        # }
         try:
             output = search_client.collections['product'].documents.search(request_json)
             app.logger.info(f"Response of Search: {output}")
