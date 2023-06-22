@@ -69,6 +69,7 @@ def get_and_save_product():
         print(f"Counter: {counter}")
         data = data.next_page()
         save_shopify_products(data)
+    return counter
 
 
 if __name__ == '__main__':
