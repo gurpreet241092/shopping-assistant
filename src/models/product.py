@@ -8,4 +8,4 @@ product_schema = {
     ]
 }
 # search_client.collections['product'].delete()
-search_client.collections.create(product_schema)
+# search_client.collections.create(product_schema)
