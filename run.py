@@ -115,7 +115,7 @@ def chat_products(chat_id):
         # product_details = list(map(extract_product_from_documents, search_response["hits"]))
         return make_response({
             "openai_response": request_json,
-            "user_response": request_json["responseForUser"],
+            "response_for_user": request_json["responseForUser"],
             "search_query": request_object,
             # "count": search_response["found"],
             # "product_details": product_details,

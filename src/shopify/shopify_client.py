@@ -66,7 +66,7 @@ def get_and_save_products():
     counter = 1
     while data.has_next_page():
         counter = counter + 1
-        print(f"Counter: {counter}")
+        app.logger.info(f"Counter: {counter}")
         data = data.next_page()
         save_shopify_products(data)
     return counter
