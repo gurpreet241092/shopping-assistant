@@ -8,7 +8,7 @@ from flask_restful import Resource
 
 from flask_app import app
 from src.core.error_response import ErrorResponse
-from src.shopify.shopify_client import get_data, get_and_save_product
+from src.shopify.shopify_client import pull_shopify_products
 
 
 class ShopifyPullResource(Resource):
@@ -28,7 +28,7 @@ class ShopifyPullResource(Resource):
             # List all the things available at shopify.
             # all_directory = dir(shopify)
             # print(all_directory)
-            num_pages = get_and_save_product()
+            num_pages = pull_shopify_products()
             return make_response(json.dumps({"success": True, "pages_fetched": num_pages}), 200)
         except Exception as e:
             app.logger.info(e)

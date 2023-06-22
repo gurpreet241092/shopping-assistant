@@ -58,7 +58,7 @@ def save_shopify_products(data):
     search_client.collections['product'].documents.import_(json_string_list, {"action": "upsert"})
 
 
-def get_and_save_product():
+def get_and_save_products():
     object_name = 'Product'
     attribute = getattr(shopify, object_name)
     data = attribute.find(since_id=0, limit=20)
@@ -70,6 +70,12 @@ def get_and_save_product():
         data = data.next_page()
         save_shopify_products(data)
     return counter
+
+
+def pull_shopify_products():
+    api_session = shopify.Session(SHOPIFY_MERCHANT, "2023-04", SHOPIFY_TOKEN)
+    shopify.ShopifyResource.activate_session(api_session)
+    return get_and_save_products()
 
 
 if __name__ == '__main__':
