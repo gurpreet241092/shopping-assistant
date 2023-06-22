@@ -1,4 +1,6 @@
 import json
+import traceback
+
 import shopify
 from flask import make_response, request
 from flask_login import login_required
@@ -30,5 +32,6 @@ class ShopifyPullResource(Resource):
             return make_response(json.dumps({"success": True, "pages_fetched": num_pages}), 200)
         except Exception as e:
             app.logger.info(e)
+            traceback.print_exc()
             return ErrorResponse("INTERNAL_ERROR", "internal error while searching product", 500).to_response()
 
