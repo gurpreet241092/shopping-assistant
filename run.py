@@ -12,9 +12,11 @@ from src.chatGPT.chatbot import get_chat_message_reply
 from src.constants import BASE_PREFIX
 from src.core.error_response import ErrorResponse
 from src.logging.logging_helper import log_info
+from src.models.product import product_schema
 from src.prefix_handler import PrefixMiddleware
 
 import openai
+from typesense.exceptions import ObjectNotFound
 
 from src.resources.product_resource import ProductResource
 from src.resources.search_product_resource import SearchProductResource, SearchBulkProductResource
@@ -139,6 +141,12 @@ def health():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=False)
+    try:
+        retrieve_response = search_client.collections['product'].retrieve()
+        app.logger.info(retrieve_response)
+    except ObjectNotFound as onf:
+        search_client.collections.create(product_schema)
+
 
 # To start server as https
 

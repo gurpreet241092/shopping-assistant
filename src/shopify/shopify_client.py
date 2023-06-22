@@ -80,8 +80,11 @@ def pull_shopify_products():
 
 if __name__ == '__main__':
     # p: shopify.resources.product.Product = shopify.Product()
-    api_session = shopify.Session(SHOPIFY_MERCHANT, "2023-04", SHOPIFY_TOKEN)
-    shopify.ShopifyResource.activate_session(api_session)
+    # api_session = shopify.Session(SHOPIFY_MERCHANT, "2023-04", SHOPIFY_TOKEN)
+    # shopify.ShopifyResource.activate_session(api_session)
+
+    retrieve_response = search_client.collections['product'].retrieve()
+    print(retrieve_response)
     #
     # retrieve_all_response = search_client.collections.retrieve()
     # print(retrieve_all_response)
@@ -94,12 +97,12 @@ if __name__ == '__main__':
     print(retrieve_all_response)
     print("\n\n")
 
-    print(search_client.collections['product'].documents.search({
-        "filter_by": "variants.color:[black,pink]",
-        "q": "dresses girls",
-        "query_by": "title, tags, body_html",
-        "per_page": 10
-    }))
+    # print(search_client.collections['product'].documents.search({
+    #     "filter_by": "variants.color:[black,pink]",
+    #     "q": "dresses girls",
+    #     "query_by": "title, tags, body_html",
+    #     "per_page": 10
+    # }))
 
     # export_output = search_client.collections['product'].documents.export()
     # print(export_output)
